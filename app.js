@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded( {extended: true} ));
 app.use(express.static("public"));   //to apply css stylesheet
 
 app.get("/", function(req, res){
-  res.sendFile(__dirname + "/signup.html");
+  res.sendFile("/signup.html");
 });
 
 app.post("/", function(req,res){
@@ -44,9 +44,11 @@ app.post("/", function(req,res){
   const request = https.request(url, options, function(response){
 
     if (response.statusCode===200) {
-      res.sendFile(__dirname + "/success.html");
+      // res.sendFile(__dirname + "/success.html");
+      console.log("DONE");
     } else{
-      res.sendFile(__dirname + "/failure.html");
+      // res.sendFile(__dirname + "/failure.html");
+      console.log("NOOOOOO");
     }
 
     response.on("data", function(data){
@@ -64,7 +66,7 @@ app.post("/failure", function(req,res){         //see the path of what is going 
   res.redirect("/")
 })
 
-app.listen(process.env.PORT || 3000, function(){
+app.listen(3000, function(){
   console.log("Server is running on port 3000.");
 })
 
